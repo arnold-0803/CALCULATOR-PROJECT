@@ -1,0 +1,66 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  padding: 40px;
+}
+
+.container{
+  position: relative;
+  width: 400px;
+  border: 2px solid black;
+  padding: 20px;
+}
+
+.container .display-pannel{
+  border: 1px solid black;
+  padding: 20px;
+  font-size: 35px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.container ul{
+  list-style: none;
+}
+
+.numerals ul{
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  gap: 10px;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.numerals ul li button,
+.operators ul li button{
+  font-size: 25px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.operators{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.operators ul{
+  display: flex;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.operators #equal-btn,
+.operators .clear-btn{
+  margin-left: 20px;
+  width: 80px;
+  font-size: 25px;
+  height: 50px;
+}
+  
