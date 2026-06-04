@@ -1,6 +1,7 @@
 let firstValue = "";
 let secondValue = "";
 let operator = null;
+let resultDisplayed = false;
 
 // ADITION LOGIC
 const add = (a, b) => {
@@ -48,9 +49,23 @@ const updateValue = () => {
     button.addEventListener("click", (e) => {
       
       if(operator === null){
-        return firstValue += e.target.textContent, display.textContent = firstValue, console.log("1st " + firstValue);
-      }else if(operator !== null) {
-        return secondValue += e.target.textContent, display.textContent = secondValue, console.log("2nd " + secondValue);
+          firstValue += e.target.textContent;
+          display.textContent = firstValue;
+
+          console.log({
+            firstValue,
+            secondValue,
+            operator
+          });
+      }else {
+        secondValue += e.target.textContent;
+        display.textContent = secondValue;
+
+        console.log({
+          firstValue,
+          secondValue,
+          operator
+        });
       }
       
     });
@@ -60,11 +75,27 @@ const updateValue = () => {
     operatorBtn.addEventListener("click", (e) => {
       operator = e.target.textContent;
 
-      display.textContent = operator;
-
-      console.log(operator);
+      // display.textContent = operator;
+      console.log({
+        firstValue,
+        secondValue,
+        operator
+      });
     })
+  });
+
+  equalButton.addEventListener("click", () => {
+    const result = operate(Number(firstValue), Number(secondValue), operator);
+
+    display.textContent = result;
+
+    firstValue = result;
+    secondValue = "";
+    operator = null;
+
+    console.log(result);
   });
 }
 
 updateValue();
+
