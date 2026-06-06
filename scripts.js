@@ -47,6 +47,14 @@ const updateValue = () => {
 
   digitButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
+
+      if(resultDisplayed === true){
+        firstValue = "";
+        secondValue = "";
+        operator = null;
+        
+        resultDisplayed = false;
+      }
       
       if(operator === null){
           firstValue += e.target.textContent;
@@ -75,6 +83,15 @@ const updateValue = () => {
     operatorBtn.addEventListener("click", (e) => {
       operator = e.target.textContent;
 
+      if(firstValue === true && secondValue === true && operator === true){
+        const result = operate(Number(firstValue), Number(secondValue), operator);
+
+        display.textContent = firstValue;
+
+        firstValue = result;
+        secondValue = "";
+      }
+
       // display.textContent = operator;
       console.log({
         firstValue,
@@ -92,6 +109,8 @@ const updateValue = () => {
     firstValue = result;
     secondValue = "";
     operator = null;
+
+    resultDisplayed = true;
 
     console.log(result);
   });
