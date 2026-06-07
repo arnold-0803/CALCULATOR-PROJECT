@@ -20,7 +20,7 @@ const multiply = (a, b) => {
 
 // DIVITION LOGIC
 const divide = (a, b) => {
-  if(b === 0) return "MAth Error!";
+  if(b === 0) return "math error";
   return a / b;
 }
 
@@ -81,18 +81,19 @@ const updateValue = () => {
 
   operatorButtons.forEach((operatorBtn) => {
     operatorBtn.addEventListener("click", (e) => {
-      operator = e.target.textContent;
 
-      if(firstValue === true && secondValue === true && operator === true){
+      if(firstValue !== "" && secondValue !== ""){
         const result = operate(Number(firstValue), Number(secondValue), operator);
 
-        display.textContent = firstValue;
+        display.textContent = result;
 
         firstValue = result;
         secondValue = "";
+        operator = null;
       }
 
-      // display.textContent = operator;
+      operator = e.target.textContent;
+
       console.log({
         firstValue,
         secondValue,
@@ -102,9 +103,16 @@ const updateValue = () => {
   });
 
   equalButton.addEventListener("click", () => {
+    if(firstValue === "" || secondValue === "" || operator === null ) return;
+
     const result = operate(Number(firstValue), Number(secondValue), operator);
 
-    display.textContent = result;
+    if(result === "math error"){
+      display.textContent = result;
+      return;
+    }
+
+    display.textContent = Number(result.toFixed(2));
 
     firstValue = result;
     secondValue = "";
@@ -114,6 +122,15 @@ const updateValue = () => {
 
     console.log(result);
   });
+
+  clearButton.addEventListener("click", () => {
+    firstValue = "";
+    secondValue = "";
+    operator = null;
+    resultDisplayed = false;
+    display.textContent = 0;
+  });
+
 }
 
 updateValue();
